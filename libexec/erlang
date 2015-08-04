@@ -136,7 +136,9 @@ erlang_clean_compile() {
       $REBAR_CMD compile $SILENCE
 
     elif [ \"$BUILD_CMD\" = \"mix\" ] && [ \"$RELEASE_CMD\" = \"mix\" ]; then
-      echo \"Compiling sources is done by mix release task\" $SILENCE
+      echo \"Compiling and building sources\" $SILENCE
+      brunch b
+      MIX_ENV=prod $MIX_CMD do clean, phoenix.digest, deps.compile, compile $SILENCE
     elif [ \"$BUILD_CMD\" = \"mix\" ]; then
       echo \"using mix to compile files\" $SILENCE
       APP=\"$APP\" $MIX_CMD do clean, deps.compile, compile $SILENCE
