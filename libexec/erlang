@@ -137,6 +137,7 @@ erlang_clean_compile() {
 
     elif [ \"$BUILD_CMD\" = \"mix\" ] && [ \"$RELEASE_CMD\" = \"mix\" ]; then
       echo \"Compiling and building sources\" $SILENCE
+      npm install
       brunch b
       MIX_ENV=prod $MIX_CMD do clean, phoenix.digest, deps.compile, compile $SILENCE
     elif [ \"$BUILD_CMD\" = \"mix\" ]; then
